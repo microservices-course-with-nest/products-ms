@@ -13,13 +13,13 @@ const envsSchema = joi
     PORT: joi.number().required(),
     DATABASE_URL: joi.string().required(),
 
-    //NATS_SERVERS: joi.array().items( joi.string() ).required(),
+    NATS_SERVERS: joi.array().items( joi.string() ).required(),
   })
   .unknown(true);
 
 const { error, value } = envsSchema.validate({
   ...process.env,
-  //NATS_SERVERS: process.env.NATS_SERVERS?.split(',')
+  NATS_SERVERS: process.env.NATS_SERVERS?.split(',')
 });
 
 if (error) {
@@ -32,5 +32,5 @@ export const envs = {
   port: envVars.PORT,
   databaseUrl: envVars.DATABASE_URL,
 
-  //natsServers: envVars.NATS_SERVERS,
+  natsServers: envVars.NATS_SERVERS,
 };
